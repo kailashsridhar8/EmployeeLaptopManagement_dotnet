@@ -6,6 +6,6 @@
     "\\LaptopManagement\\Models",
     "\\LaptopManagement\\Properties"
   ],
-  "SelectedNode": "\\LaptopManagement\\Controllers\\AuthController.cs",
+  "SelectedNode": "\\LaptopManagement\\Models\\laptopmanagementContext.cs",
   "PreviewInSolutionExplorer": false
 }

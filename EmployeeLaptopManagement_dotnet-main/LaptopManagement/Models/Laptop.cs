@@ -12,9 +12,9 @@ namespace LaptopManagement.Models
 
         public int Id { get; set; }
         public string Name { get; set; } = null!;
-        public int SoftwareId { get; set; }
+        public string? Storage { get; set; }
+        public string? Processor { get; set; }
 
-        public virtual Software Software { get; set; } = null!;
         public virtual ICollection<User> Users { get; set; }
     }
 }

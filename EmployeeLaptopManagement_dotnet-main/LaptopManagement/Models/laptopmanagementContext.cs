@@ -16,6 +16,7 @@ namespace LaptopManagement.Models
         {
         }
 
+        public virtual DbSet<InstalledSoftware> InstalledSoftwares { get; set; } = null!;
         public virtual DbSet<Laptop> Laptops { get; set; } = null!;
         public virtual DbSet<Software> Softwares { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
@@ -34,11 +35,20 @@ namespace LaptopManagement.Models
             modelBuilder.UseCollation("utf8mb4_0900_ai_ci")
                 .HasCharSet("utf8mb4");
 
+            modelBuilder.Entity<InstalledSoftware>(entity =>
+            {
+                entity.ToTable("installed_softwares");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.LaptopId).HasColumnName("laptop_id");
+
+                entity.Property(e => e.SoftwareId).HasColumnName("software_id");
+            });
+
             modelBuilder.Entity<Laptop>(entity =>
             {
                 entity.ToTable("laptops");
-
-                entity.HasIndex(e => e.SoftwareId, "software_code_idx");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
@@ -46,13 +56,13 @@ namespace LaptopManagement.Models
                     .HasMaxLength(45)
                     .HasColumnName("name");
 
-                entity.Property(e => e.SoftwareId).HasColumnName("software_id");
+                entity.Property(e => e.Processor)
+                    .HasMaxLength(45)
+                    .HasColumnName("processor");
 
-                entity.HasOne(d => d.Software)
-                    .WithMany(p => p.Laptops)
-                    .HasForeignKey(d => d.SoftwareId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("software_id");
+                entity.Property(e => e.Storage)
+                    .HasMaxLength(45)
+                    .HasColumnName("storage");
             });
 
             modelBuilder.Entity<Software>(entity =>
@@ -61,9 +71,7 @@ namespace LaptopManagement.Models
 
                 entity.HasIndex(e => e.Id, "software_code_idx");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(45)
@@ -92,7 +100,7 @@ namespace LaptopManagement.Models
                     .HasColumnName("name");
 
                 entity.Property(e => e.Password)
-                    .HasMaxLength(45)
+                    .HasMaxLength(200)
                     .HasColumnName("password");
 
                 entity.Property(e => e.Role)

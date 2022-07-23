@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "KdhZO0LBZuxSZG19KYO6pVZ0TUr5QBE8alwO6xSiRJ57SFo8vBlH3u1yfXgAZJKevWsTbj7HOKJGRtnUxvIBTQ==",
+  "dgSpecHash": "tmL6NUIubqOxPfrk8XyViHz49Tj+tn7x6VKoVKMutzmqkrIm6hdUxfB1E1BF7OOQFB78IpVhelw/HE1y7CII9w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\VC\\Downloads\\EmployeeLaptopManagement_dotnet-main\\LaptopManagement\\LaptopManagement.csproj",
+  "projectFilePath": "D:\\Presidio_Dotnet\\EmployeeLaptopManagement_dotnet-main\\LaptopManagement\\LaptopManagement.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\VC\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\VC\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\VC\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.7\\microsoft.aspnetcore.authentication.jwtbearer.6.0.7.nupkg.sha512",
     "C:\\Users\\VC\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

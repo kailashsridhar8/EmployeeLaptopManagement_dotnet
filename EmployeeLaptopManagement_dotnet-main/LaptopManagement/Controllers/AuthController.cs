@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-
+using bcrypt = BCrypt.Net.BCrypt;
 namespace LaptopManagement.Controllers
 {
     [Route("api/[controller]")]
@@ -25,30 +25,42 @@ namespace LaptopManagement.Controllers
         [Route("register")]
         public async Task<ActionResult<User>> Register([FromBody] User user)
         {
+         
+            var dbUser = await _context.Users.FirstOrDefaultAsync(x => x.EmailId == user.EmailId);
+            if(dbUser != null)
+            {
+                return BadRequest("User Already exists");
+            }
+            user.Password = bcrypt.HashPassword(user.Password,12);
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
             return Ok("User Created Successfully");
+
         }
 
         [HttpPost]
         [Route("login")]
         public async Task<ActionResult<User>> Login([FromBody] Login user)
         {
-            var dbUser = await _context.Users.FirstOrDefaultAsync(x => x.EmailId == user.EmailId && x.Password == user.Password);
+            var dbUser = await _context.Users.FirstOrDefaultAsync(x => x.EmailId == user.EmailId);
+               if (bcrypt.Verify(user.Password, dbUser.Password)) { 
             if (dbUser == null)
             {
                 return BadRequest("User Not Found");
             }
-            string token = CreateToken(user);
-            return Ok(token);
+            }
+            string role = dbUser.Role.ToString();
+            string token = CreateToken(dbUser,role);
+                return Ok(token);
         }
 
-        private string CreateToken(Login user)
+        private string CreateToken(User user,string role)
         {
             List<Claim> claims = new List<Claim>
             {
+                new Claim("Id",user.Id.ToString()),
                 new Claim(ClaimTypes.Email, user.EmailId),
-                new Claim(ClaimTypes.Role,"0")
+                new Claim(ClaimTypes.Role,role)
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
