@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace LaptopManagement.Controllers
@@ -16,6 +17,15 @@ namespace LaptopManagement.Controllers
         {
             _context = context;
         }
+
+
+        [HttpGet]
+        [Route("[Action]")]
+        public async Task<ActionResult<List<Software>>> GetAllAvailableSoftwares()
+        {
+            return Ok(_context.Softwares.ToList<Software>());
+        }
+
 
         [HttpPost, Authorize(Roles = "0")]
         [Route("[Action]")]
@@ -88,7 +98,6 @@ namespace LaptopManagement.Controllers
 
 
 
-
         [HttpDelete]
         [Route("[Action]")]
         public async Task<ActionResult<InstalledSoftware>> RemoveSoftwareFromLaptop(InstalledSoftware installedsoftware)
@@ -110,6 +119,24 @@ namespace LaptopManagement.Controllers
             return BadRequest("Error removing software from laptop");
 
 
+        }
+
+
+
+
+        [HttpGet]
+        [Route("[Action]/{laptopid}")]
+        public async Task<ActionResult<Object>> SoftwaresInstalled(int laptopid)
+        {
+            var dbSoftwares = _context.InstalledSoftwares.Where(x => x.LaptopId == laptopid).ToList();
+            var installedsoftwares = new ArrayList();
+            foreach (var softwares in dbSoftwares)
+            {
+                var software= await _context.Softwares.FirstOrDefaultAsync(x => x.Id == softwares.SoftwareId);
+                installedsoftwares.Add(software.Name);
+            }
+
+            return Ok(installedsoftwares);
         }
 
 

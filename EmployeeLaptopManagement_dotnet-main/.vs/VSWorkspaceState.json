@@ -4,8 +4,9 @@
     "\\LaptopManagement",
     "\\LaptopManagement\\Controllers",
     "\\LaptopManagement\\Models",
+    "\\LaptopManagement\\Producer",
     "\\LaptopManagement\\Properties"
   ],
-  "SelectedNode": "\\LaptopManagement\\Models\\laptopmanagementContext.cs",
+  "SelectedNode": "\\LaptopManagement\\Controllers\\EmployeeController.cs",
   "PreviewInSolutionExplorer": false
 }
