@@ -62,7 +62,7 @@ namespace LaptopManagement.Controllers
             return Ok(_context.Users.ToList<User>());
         }
 
-        //-----> on the working api
+
         [HttpPost]
         [Route("[Action]")]
         public async Task<ActionResult<Laptop>> AddNewLaptop([FromBody] Laptop laptop)
@@ -79,39 +79,131 @@ namespace LaptopManagement.Controllers
         public async Task<ActionResult<Software>> AddNewSoftware([FromBody] Software software)
         {
 
-            _context.Softwares.Add(software);
-            await _context.SaveChangesAsync();
-            return Ok("Software Added Successfully");
+            var dbSoftware = await _context.Softwares.FirstOrDefaultAsync(x => x.Name == software.Name);
 
+            if (dbSoftware == null)
+            {
+                _context.Softwares.Add(software);
+                await _context.SaveChangesAsync();
+                return Ok("Software Added Successfully");
+            }
+
+            return Ok("Software already exists");
         }
 
 
         [HttpPut, Authorize(Roles = "1")]
         [Route("[Action]")]
-        public async Task<ActionResult<User>> MapLaptopToUser( [FromBody] User user)
+        public async Task<ActionResult<Laptop>> MapLaptopToUser([FromBody] Laptop laptop)
         {
             if (true)
             {
-                var userdb = await _context.Users.FirstOrDefaultAsync(x => x.Id == user.Id);
-                if (userdb != null)
+                var lapdb = await _context.Laptops.FirstOrDefaultAsync(x => x.Id == laptop.Id);
+
+                var lapWithGivenUserId = await _context.Laptops.FirstOrDefaultAsync(x => x.UserId == laptop.UserId);
+
+
+
+                if (lapWithGivenUserId != null)
                 {
-                    userdb.LaptopId = user.LaptopId;
-                    await _context.SaveChangesAsync();
-                    return Ok(userdb);
+                    return Ok("User has laptop already!");
                 }
-                return Ok("Error while Mapping");
+                else
+                {
+                    if (lapdb != null)
+                    {
+                        lapdb.UserId = laptop.UserId;
+                        await _context.SaveChangesAsync();
+                        return Ok(lapdb);
+                    }
+                }
+
+
+                return Ok("Error");
 
             }
 
         }
 
-      }
+
+
+        [HttpDelete]
+        [Route("[Action]/{id}")]
+
+        public async Task<ActionResult<User>> RemoveEmployee(int id)
+        {
+            var dbUser = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+            var dbLaptop = await _context.Laptops.FirstOrDefaultAsync(x => x.UserId == id);
+            if (dbUser != null && dbUser.Role != 1)
+            {
+                _context.Users.Remove(dbUser);
+                dbLaptop.UserId = null;
+                await _context.SaveChangesAsync();
+                return Ok(new { message = "Employee removed successfully" });
+            }
+            else if(dbUser == null)
+            {
+                return BadRequest("No such id exists");
+            }
+            else if (dbUser.Role == 1)
+            {
+                return BadRequest("Cannot remove a admin");
+            }
+            return BadRequest("Error removing");
+
+        }
+
+
+        [HttpDelete]
+        [Route("[Action]/{id}")]
+        public async Task<ActionResult<Software>> RemoveSoftware(int id)
+        {
+            var dbSoftware = await _context.Softwares.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (dbSoftware != null)
+            {
+                _context.Softwares.Remove(dbSoftware);
+              
+                await _context.SaveChangesAsync();
+                return Ok(new { message = "Software removed successfully" });
+            }
+            else if (dbSoftware == null)
+            {
+                return BadRequest("No such software id exists");
+            }
+           
+            return BadRequest("Error removing software");
+
+        }
+
+
+        [HttpDelete]
+        [Route("[Action]/{id}")]
+        public async Task<ActionResult<Laptop>> RemoveLaptop(int id)
+        {
+            var dbLaptop = await _context.Laptops.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (dbLaptop != null)
+            {
+                _context.Laptops.Remove(dbLaptop);
+
+                await _context.SaveChangesAsync();
+                return Ok(new { message = "Laptop removed successfully" });
+            }
+            else if (dbLaptop == null)
+            {
+                return BadRequest("No such laptop id exists");
+            }
+
+            return BadRequest("Error removing laptop");
+
+
+        }
 
 
 
 
-
-
+    }
 
     }
 

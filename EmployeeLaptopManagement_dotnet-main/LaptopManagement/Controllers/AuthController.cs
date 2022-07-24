@@ -79,32 +79,6 @@ namespace LaptopManagement.Controllers
         }
 
 
-        [HttpGet]
-        [Route("getusers"), Authorize(Roles = "0")]
-        public async Task<IActionResult> GetUsers()
-        {
-
-
-            return
-               Ok("Hi");
-
-            //var isAdmin = "";
-            //var re = Request;
-            //var headers = re.Headers;
-            //if (headers.ContainsKey("Authorization"))
-            //{
-            //    var token = headers["Authorization"];
-            //    if (token != 0)
-            //    {
-            //        return Ok("allDetails");
-            //    }
-
-            //    return Ok("hel");
-            //}
-            //return Ok();
-
-
-        }
     }
 }
 

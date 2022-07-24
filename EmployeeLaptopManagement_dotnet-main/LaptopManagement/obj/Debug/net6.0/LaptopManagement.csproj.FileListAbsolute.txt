@@ -137,3 +137,4 @@ D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagement\obj\Deb
 D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagement\obj\Debug\net6.0\LaptopManagement.csproj.CopyComplete
 D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagement\obj\Debug\net6.0\LaptopManagement.genruntimeconfig.cache
 D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagement\obj\Debug\net6.0\ref\LaptopManagement.dll
+D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagement\bin\Debug\net6.0\RabbitMQ.Client.dll

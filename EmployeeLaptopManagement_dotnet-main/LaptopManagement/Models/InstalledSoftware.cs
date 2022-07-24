@@ -8,5 +8,8 @@ namespace LaptopManagement.Models
         public int Id { get; set; }
         public int? LaptopId { get; set; }
         public int? SoftwareId { get; set; }
+
+        public virtual Laptop? Laptop { get; set; }
+        public virtual Software? Software { get; set; }
     }
 }

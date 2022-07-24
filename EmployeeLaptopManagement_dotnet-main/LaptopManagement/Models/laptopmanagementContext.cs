@@ -39,16 +39,34 @@ namespace LaptopManagement.Models
             {
                 entity.ToTable("installed_softwares");
 
+                entity.HasIndex(e => e.LaptopId, "laptop_id_idx");
+
+                entity.HasIndex(e => e.SoftwareId, "software_id_idx");
+
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.LaptopId).HasColumnName("laptop_id");
 
                 entity.Property(e => e.SoftwareId).HasColumnName("software_id");
+
+                entity.HasOne(d => d.Laptop)
+                    .WithMany(p => p.InstalledSoftwares)
+                    .HasForeignKey(d => d.LaptopId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("laptop_id");
+
+                entity.HasOne(d => d.Software)
+                    .WithMany(p => p.InstalledSoftwares)
+                    .HasForeignKey(d => d.SoftwareId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("software_id");
             });
 
             modelBuilder.Entity<Laptop>(entity =>
             {
                 entity.ToTable("laptops");
+
+                entity.HasIndex(e => e.UserId, "user_id_idx");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
@@ -63,6 +81,13 @@ namespace LaptopManagement.Models
                 entity.Property(e => e.Storage)
                     .HasMaxLength(45)
                     .HasColumnName("storage");
+
+                entity.Property(e => e.UserId).HasColumnName("user_id");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Laptops)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("user_id");
             });
 
             modelBuilder.Entity<Software>(entity =>
@@ -85,15 +110,11 @@ namespace LaptopManagement.Models
                 entity.HasIndex(e => e.Id, "id_UNIQUE")
                     .IsUnique();
 
-                entity.HasIndex(e => e.LaptopId, "laptop_id_idx");
-
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.EmailId)
                     .HasMaxLength(45)
                     .HasColumnName("emailId");
-
-                entity.Property(e => e.LaptopId).HasColumnName("laptop_id");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(45)
@@ -106,11 +127,6 @@ namespace LaptopManagement.Models
                 entity.Property(e => e.Role)
                     .HasColumnName("role")
                     .HasDefaultValueSql("'0'");
-
-                entity.HasOne(d => d.Laptop)
-                    .WithMany(p => p.Users)
-                    .HasForeignKey(d => d.LaptopId)
-                    .HasConstraintName("laptop_id");
             });
 
             OnModelCreatingPartial(modelBuilder);

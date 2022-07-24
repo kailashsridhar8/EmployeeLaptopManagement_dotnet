@@ -19,8 +19,6 @@ namespace LaptopManagement.Controllers
        
         
 
-
-
         [HttpPut]
         [Route("[Action]/{userid}")]
         public async Task<ActionResult<User>> UpdateUserProfile(int userid, [FromBody] User user)

@@ -21,44 +21,57 @@ namespace LaptopManagement.Controllers
         [Route("[Action]")]
         public async Task<object> AddSoftwareToLaptop([FromBody] int softwareid)
         {
-            InstalledSoftware installedSoftware = new InstalledSoftware();
-
-
+           
 
             int id = decode();
 
-            var dbUser=_context.Users.Where(x => x.Id == id).ToList();
+            var dbUser=await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+
+            var dbLaptop = await _context.Laptops.FirstOrDefaultAsync(x => x.UserId == dbUser.Id);
 
 
-            installedSoftware.LaptopId = dbUser[0].LaptopId;
-
-             var dbSoft = await _context.Softwares.FirstOrDefaultAsync(x => x.Id == softwareid);
-            
-            if (dbSoft != null)
+            if (dbLaptop!=null)
             {
-                var dbLap = _context.InstalledSoftwares.Where(x => x.LaptopId == installedSoftware.LaptopId).ToList();
+                InstalledSoftware installedSoftware = new InstalledSoftware();
 
-                if (dbLap[0].SoftwareId == softwareid)
+                installedSoftware.LaptopId = dbLaptop.Id;
+                var dbSoft = await _context.Softwares.FirstOrDefaultAsync(x => x.Id == softwareid);
+
+                if (dbSoft != null)
                 {
-                    return Ok("Software Already Exists on Laptop");
+                    var dbSoftware = _context.InstalledSoftwares.Where(x => x.LaptopId == installedSoftware.LaptopId).ToList();
+
+                    foreach (var soft in dbSoftware)
+                    {
+                        if (soft.SoftwareId == softwareid)
+                        {
+                            return Ok("Software Already Exists on Laptop");
+                        }
+                    }
+
+
+                    installedSoftware.SoftwareId = softwareid;
+                    _context.InstalledSoftwares.Add(installedSoftware);
+                    await _context.SaveChangesAsync();
+                    Send.Producer("Installed a new software");
+                    return Ok("Software Added to Laptop Successfully");
+
                 }
-
-
-                installedSoftware.SoftwareId = softwareid;
-                _context.InstalledSoftwares.Add(installedSoftware);
-                await _context.SaveChangesAsync();
-                return Ok("Software Added to Laptop Successfully");
+                else
+                {
+                    return Ok("Software Id does not match to any softwares");
+                }
 
             }
             else
             {
-                return Ok("Software Id does not match to any softwares");
+                return BadRequest("Employee dont have a laptop yet");
             }
 
 
-          
-
         }
+
+
 
 
         private int decode()
@@ -71,6 +84,37 @@ namespace LaptopManagement.Controllers
             var id = tokenS.Claims.First(claim => claim.Type == "Id").Value;
             return Convert.ToInt32(id);
         }
+
+
+
+
+
+        [HttpDelete]
+        [Route("[Action]")]
+        public async Task<ActionResult<InstalledSoftware>> RemoveSoftwareFromLaptop(InstalledSoftware installedsoftware)
+        {
+            var dbSoftware = await _context.Softwares.FirstOrDefaultAsync(x => x.Id == installedsoftware.SoftwareId);
+
+            if (dbSoftware != null)
+            {
+                _context.InstalledSoftwares.Remove(installedsoftware);
+
+                await _context.SaveChangesAsync();
+                return Ok(new { message = "Laptop removed successfully" });
+            }
+            else if (dbSoftware == null)
+            {
+                return BadRequest("No such software id exists");
+            }
+
+            return BadRequest("Error removing software from laptop");
+
+
+        }
+
+
+
+
 
 
     }
