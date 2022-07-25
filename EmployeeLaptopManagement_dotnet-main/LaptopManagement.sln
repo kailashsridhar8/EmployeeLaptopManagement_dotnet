@@ -5,7 +5,9 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaptopManagement", "LaptopManagement\LaptopManagement.csproj", "{A5833586-0B73-4135-B23F-A1A833917099}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reports", "Reports\Reports.csproj", "{708E3515-FBE5-486E-AE03-8C485A58D101}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reports", "Reports\Reports.csproj", "{708E3515-FBE5-486E-AE03-8C485A58D101}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaptopManagementTest", "LaptopManagementTest\LaptopManagementTest.csproj", "{F9E9F3B1-3D0F-4F2F-AA07-C08A86E27CB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{708E3515-FBE5-486E-AE03-8C485A58D101}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{708E3515-FBE5-486E-AE03-8C485A58D101}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{708E3515-FBE5-486E-AE03-8C485A58D101}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9E9F3B1-3D0F-4F2F-AA07-C08A86E27CB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9E9F3B1-3D0F-4F2F-AA07-C08A86E27CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9E9F3B1-3D0F-4F2F-AA07-C08A86E27CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9E9F3B1-3D0F-4F2F-AA07-C08A86E27CB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

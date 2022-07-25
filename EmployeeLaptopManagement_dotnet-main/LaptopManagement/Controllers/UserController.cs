@@ -1,4 +1,5 @@
 ﻿using LaptopManagement.Models;
+using LaptopManagement.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,33 +12,29 @@ namespace LaptopManagement.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly laptopmanagementContext _context;
-        public UserController(laptopmanagementContext context)
+        private readonly UserService _service;
+        public UserController(UserService service)
         {
-            _context = context;
+            _service = service;
         }
        
         
 
         [HttpPut]
         [Route("[Action]/{userid}")]
-        public async Task<ActionResult<User>> UpdateUserProfile(int userid, [FromBody] User user)
+        public async Task<IActionResult> UpdateUserProfile(int userid, [FromBody] User user)
         {
             if (true)
             {
-                var userdb = await _context.Users.FirstOrDefaultAsync(x => x.Id == userid);
+                var userdb = await _service.UpdateUser(userid, user);
                 if (userdb != null)
                 {
 
-                    userdb.Name = user.Name;
-                    userdb.EmailId = user.EmailId;
-                    userdb.Password = bcrypt.HashPassword(user.Password, 12);
-                   
-                    await _context.SaveChangesAsync();
+                
                     return Ok(userdb);
 
                 }
-                return Ok("Error while updating Student Profile data");
+                return BadRequest(new { message = "Error while updating Student Profile data" });
 
             }
 

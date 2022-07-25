@@ -2,13 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\LaptopManagement",
+    "\\LaptopManagementTest",
+    "\\LaptopManagementTest\\Service",
     "\\LaptopManagement\\Controllers",
-    "\\LaptopManagement\\Models",
     "\\LaptopManagement\\Producer",
     "\\LaptopManagement\\Properties",
+    "\\LaptopManagement\\Services",
     "\\Reports",
     "\\Reports\\Consumer"
   ],
-  "SelectedNode": "\\Reports\\Consumer\\Consumer.cs",
+  "SelectedNode": "\\LaptopManagementTest\\Service\\UserServiceTest.cs",
   "PreviewInSolutionExplorer": false
 }
