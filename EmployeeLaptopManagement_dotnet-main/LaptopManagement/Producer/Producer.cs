@@ -10,7 +10,7 @@ class Send
         using (var connection = factory.CreateConnection())
         using (var channel = connection.CreateModel())
         {
-            channel.QueueDeclare(queue: "hello",
+            channel.QueueDeclare(queue: "report",
                                  durable: false,
                                  exclusive: false,
                                  autoDelete: false,
@@ -20,7 +20,7 @@ class Send
             var body = Encoding.UTF8.GetBytes(message);
 
             channel.BasicPublish(exchange: "",
-                                 routingKey: "hello",
+                                 routingKey: "report",
                                  basicProperties: null,
                                  body: body);
             Console.WriteLine(" [x] Sent {0}", message);

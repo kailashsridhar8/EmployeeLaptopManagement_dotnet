@@ -5,8 +5,10 @@
     "\\LaptopManagement\\Controllers",
     "\\LaptopManagement\\Models",
     "\\LaptopManagement\\Producer",
-    "\\LaptopManagement\\Properties"
+    "\\LaptopManagement\\Properties",
+    "\\Reports",
+    "\\Reports\\Consumer"
   ],
-  "SelectedNode": "\\LaptopManagement\\Controllers\\EmployeeController.cs",
+  "SelectedNode": "\\Reports\\Consumer\\Consumer.cs",
   "PreviewInSolutionExplorer": false
 }
