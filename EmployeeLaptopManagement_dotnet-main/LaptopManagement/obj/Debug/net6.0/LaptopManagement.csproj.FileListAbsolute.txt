@@ -140,3 +140,12 @@ D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagement\obj\Deb
 D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagement\bin\Debug\net6.0\RabbitMQ.Client.dll
 D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagement\bin\Debug\net6.0\Castle.Core.dll
 D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagement\bin\Debug\net6.0\Moq.dll
+D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagement\bin\Debug\net6.0\Serilog.dll
+D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagement\bin\Debug\net6.0\Serilog.AspNetCore.dll
+D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagement\bin\Debug\net6.0\Serilog.Extensions.Hosting.dll
+D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagement\bin\Debug\net6.0\Serilog.Extensions.Logging.dll
+D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagement\bin\Debug\net6.0\Serilog.Formatting.Compact.dll
+D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagement\bin\Debug\net6.0\Serilog.Settings.Configuration.dll
+D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagement\bin\Debug\net6.0\Serilog.Sinks.Console.dll
+D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagement\bin\Debug\net6.0\Serilog.Sinks.Debug.dll
+D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagement\bin\Debug\net6.0\Serilog.Sinks.File.dll

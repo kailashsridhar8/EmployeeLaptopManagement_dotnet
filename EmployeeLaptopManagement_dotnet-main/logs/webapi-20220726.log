@@ -1,0 +1,28 @@
+[2022-07-26 01:59:16.321 +05:30  INF]  User profile is available. Using 'C:\Users\VC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-07-26 01:59:17.240 +05:30  INF]  Now listening on: https://localhost:7211
+[2022-07-26 01:59:17.241 +05:30  INF]  Now listening on: http://localhost:5211
+[2022-07-26 01:59:17.246 +05:30  INF]  Application started. Press Ctrl+C to shut down.
+[2022-07-26 01:59:17.246 +05:30  INF]  Hosting environment: Development
+[2022-07-26 01:59:17.246 +05:30  INF]  Content root path: D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagement\
+[2022-07-26 01:59:20.890 +05:30  INF]  Request starting HTTP/2 GET https://localhost:7211/swagger/index.html - -
+[2022-07-26 01:59:24.053 +05:30  INF]  Request finished HTTP/2 GET https://localhost:7211/swagger/index.html - - - 200 - text/html;charset=utf-8 3199.8963ms
+[2022-07-26 01:59:24.364 +05:30  INF]  Request starting HTTP/2 GET https://localhost:7211/_framework/aspnetcore-browser-refresh.js - -
+[2022-07-26 01:59:24.374 +05:30  INF]  Request finished HTTP/2 GET https://localhost:7211/_framework/aspnetcore-browser-refresh.js - - - 200 12002 application/javascript;+charset=utf-8 10.6727ms
+[2022-07-26 01:59:24.926 +05:30  INF]  Request starting HTTP/2 GET https://localhost:7211/_vs/browserLink - -
+[2022-07-26 01:59:25.099 +05:30  INF]  Request finished HTTP/2 GET https://localhost:7211/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 172.6521ms
+[2022-07-26 01:59:26.079 +05:30  INF]  Request starting HTTP/2 GET https://localhost:7211/swagger/v1/swagger.json - -
+[2022-07-26 01:59:26.676 +05:30  INF]  Request finished HTTP/2 GET https://localhost:7211/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 596.6434ms
+[2022-07-26 02:00:45.601 +05:30  INF]  Request starting HTTP/1.1 POST https://localhost:7211/api/Auth/login application/json 54
+[2022-07-26 02:00:46.376 +05:30  INF]  Executing endpoint 'LaptopManagement.Controllers.AuthController.Login (LaptopManagement)'
+[2022-07-26 02:00:46.432 +05:30  INF]  Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[LaptopManagement.Models.User]] Login(LaptopManagement.Models.Login) on controller LaptopManagement.Controllers.AuthController (LaptopManagement).
+[2022-07-26 02:00:47.415 +05:30  INF]  Authenticating
+[2022-07-26 02:00:50.084 +05:30  INF]  Entity Framework Core 6.0.7 initialized 'laptopmanagementContext' using provider 'Pomelo.EntityFrameworkCore.MySql:6.0.1' with options: ServerVersion 8.0.28-mysql 
+[2022-07-26 02:00:51.821 +05:30  INF]  Executed DbCommand (131ms) [Parameters=[@__user_EmailId_0='?' (Size = 45)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`id`, `u`.`emailId`, `u`.`name`, `u`.`password`, `u`.`role`
+FROM `users` AS `u`
+WHERE `u`.`emailId` = @__user_EmailId_0
+LIMIT 1
+[2022-07-26 02:00:52.799 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2022-07-26 02:00:52.813 +05:30  INF]  Executed action LaptopManagement.Controllers.AuthController.Login (LaptopManagement) in 6375.011ms
+[2022-07-26 02:00:52.816 +05:30  INF]  Executed endpoint 'LaptopManagement.Controllers.AuthController.Login (LaptopManagement)'
+[2022-07-26 02:00:52.849 +05:30  INF]  Request finished HTTP/1.1 POST https://localhost:7211/api/Auth/login application/json 54 - 200 - text/plain;+charset=utf-8 7247.6727ms

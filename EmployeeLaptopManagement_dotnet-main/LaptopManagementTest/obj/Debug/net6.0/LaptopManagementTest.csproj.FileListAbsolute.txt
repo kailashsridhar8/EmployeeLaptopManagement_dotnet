@@ -129,3 +129,12 @@ D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagementTest\obj
 D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagementTest\obj\Debug\net6.0\LaptopManagementTest.pdb
 D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagementTest\obj\Debug\net6.0\LaptopManagementTest.genruntimeconfig.cache
 D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagementTest\obj\Debug\net6.0\ref\LaptopManagementTest.dll
+D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagementTest\bin\Debug\net6.0\Serilog.dll
+D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagementTest\bin\Debug\net6.0\Serilog.AspNetCore.dll
+D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagementTest\bin\Debug\net6.0\Serilog.Extensions.Hosting.dll
+D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagementTest\bin\Debug\net6.0\Serilog.Extensions.Logging.dll
+D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagementTest\bin\Debug\net6.0\Serilog.Formatting.Compact.dll
+D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagementTest\bin\Debug\net6.0\Serilog.Settings.Configuration.dll
+D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagementTest\bin\Debug\net6.0\Serilog.Sinks.Console.dll
+D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagementTest\bin\Debug\net6.0\Serilog.Sinks.Debug.dll
+D:\Presidio_Dotnet\EmployeeLaptopManagement_dotnet-main\LaptopManagementTest\bin\Debug\net6.0\Serilog.Sinks.File.dll

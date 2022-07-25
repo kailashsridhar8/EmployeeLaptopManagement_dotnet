@@ -14,11 +14,13 @@ namespace LaptopManagement.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly laptopmanagementContext _context;
+        private readonly ILogger<AuthController> _logger;
 
-        public AuthController(IConfiguration configuration, laptopmanagementContext context)
+        public AuthController(IConfiguration configuration, laptopmanagementContext context,ILogger<AuthController> logger)
         {
             _context = context;
             _configuration = configuration;
+            _logger = logger;
         }
 
         [HttpPost]
@@ -42,6 +44,7 @@ namespace LaptopManagement.Controllers
         [Route("login")]
         public async Task<ActionResult<User>> Login([FromBody] Login user)
         {
+            _logger.LogInformation("Authenticating");
             var dbUser = await _context.Users.FirstOrDefaultAsync(x => x.EmailId == user.EmailId);
                if (bcrypt.Verify(user.Password, dbUser.Password)) { 
             if (dbUser == null)

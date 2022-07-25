@@ -8,9 +8,15 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
 using LaptopManagement.Models;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var logger = new LoggerConfiguration()
+  .ReadFrom.Configuration(builder.Configuration)
+  .Enrich.FromLogContext()
+  .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
 // Add services to the container.
 var connectionString = "server=localhost;port=3306;user=root;password=1234;database=laptopmanagement";
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 28));
